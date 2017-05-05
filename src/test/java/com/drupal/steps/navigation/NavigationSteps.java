@@ -1,5 +1,10 @@
 package com.drupal.steps.navigation;
 
-public class NavigationSteps {
+import com.drupal.steps.AbstractSteps;
 
+public class NavigationSteps extends AbstractSteps{
+	private static final long serialVersionUID = 1L;
+
+	
+	
 }

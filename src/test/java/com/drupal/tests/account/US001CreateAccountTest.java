@@ -1,5 +1,7 @@
 package com.drupal.tests.account;
 
-public class US001CreateAccountTest {
+import com.drupal.tests.BaseTest;
+
+public class US001CreateAccountTest extends BaseTest{
 
 }
