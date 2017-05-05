@@ -34,7 +34,7 @@ public class RandomData {
 	}
 	
 	public static String getUniqueGmailEmail(String email){
-		String base =email;
+		String base =email + "+";
 		String emailEnding = "gmail.com";
 		return base + getUniqueString(5,7) + "@" + emailEnding;
 	}
@@ -45,6 +45,7 @@ public class RandomData {
 		System.out.println(getUniqueGmailEmail("victortomaciprian"));
 		System.out.println(getUniquePassword());
 	}
+	
 	
 	
 }

@@ -33,10 +33,14 @@ public class US001CreateAccountTest extends BaseTest{
     @Before
     public void dataSetup(){
     	url = Constants.HOST;
+    	/*
     	userName = RandomData.getUniqueString(5, 9);
     	userEmail =  RandomData.getUniqueString(5, 9);
     	userPassword = RandomData.getUniquePassword();
-    	
+    	*/
+    	userName = "victor";
+    	userEmail = "victortomaciprian@gmail.com";
+    	userPassword = "Pass_569";
     }
 
     
