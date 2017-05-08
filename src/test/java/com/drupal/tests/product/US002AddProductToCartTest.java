@@ -1,20 +1,19 @@
 package com.drupal.tests.product;
 
-import com.drupal.Tools.Helpers;
-import com.drupal.pages.AbstractPage;
-import com.drupal.pages.product.AllProductsPage;
-import com.drupal.steps.navigation.NavigationSteps;
-import com.drupal.steps.product.AllProductsSteps;
-import com.drupal.steps.product.CommerceGuyLaptopBagSteps;
-import com.drupal.tests.BaseTest;
-import net.serenitybdd.junit.runners.SerenityRunner;
-import net.thucydides.core.annotations.Steps;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.concurrent.TimeUnit;
+import com.drupal.Tools.Helpers;
+import com.drupal.pages.cart.ShoppingCartPage;
+import com.drupal.steps.navigation.NavigationSteps;
+import com.drupal.steps.product.AllProductsSteps;
+import com.drupal.steps.product.CommerceGuyLaptopBagSteps;
+import com.drupal.tests.BaseTest;
+
+import net.serenitybdd.junit.runners.SerenityRunner;
+import net.thucydides.core.annotations.Steps;
 
 @RunWith(SerenityRunner.class)
 public class US002AddProductToCartTest extends BaseTest {
@@ -35,6 +34,8 @@ public class US002AddProductToCartTest extends BaseTest {
     public NavigationSteps navigationSteps;
     @Steps
     public CommerceGuyLaptopBagSteps commerceGuyLaptopBagSteps;
+    @Steps
+    public ShoppingCartPage shoppingCartPage;
 
 
     @Test
