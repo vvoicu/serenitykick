@@ -1,5 +1,4 @@
 package com.drupal.tests.account;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +9,8 @@ import com.wiki.steps.EndUserSteps;
 
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
+import tools.Constants;
+import tools.RandomData;
 
 
 
@@ -31,11 +32,15 @@ public class US001CreateAccountTest extends BaseTest{
     
     @Before
     public void dataSetup(){
-    	url = "http://172.22.201.38:8080/";
-    	userName = "";
-    	userEmail = "";
-    	userPassword = "";
-    	
+    	url = Constants.HOST;
+    	/*
+    	userName = RandomData.getUniqueString(5, 9);
+    	userEmail =  RandomData.getUniqueString(5, 9);
+    	userPassword = RandomData.getUniquePassword();
+    	*/
+    	userName = "victor";
+    	userEmail = "victortomaciprian@gmail.com";
+    	userPassword = "Pass_569";
     }
 
     

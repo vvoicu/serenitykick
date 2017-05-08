@@ -11,6 +11,7 @@ import net.serenitybdd.core.pages.PageObject;
 
 public class AbstractPage extends PageObject {
 
+
 	WebDriver driver;
 
 	protected WebElement findElementInList(List<WebElement> listElements, String searchTerm) {
@@ -26,4 +27,7 @@ public class AbstractPage extends PageObject {
 		new WebDriverWait(driver, 30)
 				.until(ExpectedConditions.jsReturnsValue("return document.readyState==\"complete\";"));
 	}
+
+	
+
 }
