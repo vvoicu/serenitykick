@@ -63,4 +63,8 @@ public class CommerceGuyLaptopBagSteps extends AbstractSteps {
     public void clickGoToCheckoutButton(){
         commerceGuyLaptopBagSteps.clickGoToCheckoutButton();
     }
+    @Step
+    public void clickContinueShoppingButton(){
+        commerceGuyLaptopBagSteps.clickContinueShoppingButton();
+    }
 }
