@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by sebastianciocan on 5/5/2017.
  */
-public class CommerceGuysLaptopBagPage extends AbstractPage {
+public class SpecifiedProductPage extends AbstractPage {
 
 
     @FindBy(css = ".breadcrumb")

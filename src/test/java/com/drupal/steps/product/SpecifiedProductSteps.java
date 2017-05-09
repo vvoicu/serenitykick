@@ -1,14 +1,14 @@
 package com.drupal.steps.product;
 
-import com.drupal.pages.product.CommerceGuysLaptopBagPage;
+import com.drupal.pages.product.SpecifiedProductPage;
 import com.drupal.steps.AbstractSteps;
 import net.thucydides.core.annotations.Step;
 
 /**
  * Created by sebastianciocan on 5/5/2017.
  */
-public class CommerceGuyLaptopBagSteps extends AbstractSteps {
-    CommerceGuysLaptopBagPage commerceGuyLaptopBagSteps;
+public class SpecifiedProductSteps extends AbstractSteps {
+    SpecifiedProductPage commerceGuyLaptopBagSteps;
 
     @Step
     public void createAProductDetailsList(){

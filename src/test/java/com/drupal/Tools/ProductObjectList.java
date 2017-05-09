@@ -1,11 +1,5 @@
 package com.drupal.Tools;
 
-import com.drupal.pages.product.CommerceGuysLaptopBagPage;
-import org.openqa.selenium.WebElement;
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by sebastianciocan on 5/8/2017.
  */
