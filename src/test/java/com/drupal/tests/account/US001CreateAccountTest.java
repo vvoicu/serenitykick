@@ -57,56 +57,30 @@ public class US001CreateAccountTest extends BaseTest{
     	userPassword = RandomData.getUniquePassword();
     	
     }
-    
-    @After
-    public void closeDrive(){
-    	super.webdriver.quit();
-    	super.webdriver.close();
-    }
-  
+    @Ignore
     @Test
     public void us001CreateAccountTest(){
-
     	
     	navigationSteps.navigateTo(Constants.HOST);
-    	createAccountSteps.goToRegistrationPage();
-    	registrationSteps.typeUsername(userName);
-    	registrationSteps.typeEmail(userEmail);
-    	registrationSteps.typePassword(userPassword);
-    	registrationSteps.typeConfirmPassword(userPassword);
-    	registrationSteps.clickCreateNewAccountButton();
-    	registrationSteps.assertAccountIsCreatedSuccessfuly();
+    	registrationSteps.performRegistration(userName, userEmail, userPassword);
     	
     }
     
-
+    @Ignore
     @Test
     public void us002CreateAccountWithExistingUserNameTest(){
     	navigationSteps.navigateTo(Constants.HOST);
-    	createAccountSteps.goToRegistrationPage();
-    	registrationSteps.typeUsername("victor");
-    	registrationSteps.typeEmail(userEmail);
-    	registrationSteps.typePassword(userPassword);
-    	registrationSteps.typeConfirmPassword(userPassword);
-    	registrationSteps.clickCreateNewAccountButton();
-    	registrationSteps.assertUsernameAlreadyExists();
-    	
+    	registrationSteps.registerWithExistingUserName("victor", userEmail, userPassword);
     }
     
-   
+    @Ignore
     @Test
     public void us003CreateAccountWithExistingEmailTest(){
     	navigationSteps.navigateTo(Constants.HOST);
-    	createAccountSteps.goToRegistrationPage();
-    	registrationSteps.typeUsername(userName);
-    	registrationSteps.typeEmail("victortomaciprian@gmail.com");
-    	registrationSteps.typePassword(userPassword);
-    	registrationSteps.typeConfirmPassword(userPassword);
-    	registrationSteps.clickCreateNewAccountButton();
-    	registrationSteps.assertEmailAlreadyExists();
-    	
+    	registrationSteps.registerWithExistingEmail(userName, "victortomaciprian@gmail.com", userPassword);;
     }
     
+    @Ignore
     @Test 
     public void us004RecoverPasswordTest(){
     	navigationSteps.navigateTo(Constants.HOST);
@@ -120,6 +94,28 @@ public class US001CreateAccountTest extends BaseTest{
     	registrationSteps.typeEmailForPasswordRecovery("victortomaciprian@gmail.com");
     	registrationSteps.clickSendEmailForPasswordRecoveryButton();
     	registrationSteps.assertEmailIsSent();
+    }
+    @Ignore
+    @Test
+    public void us005CreateAccountWithoutUserName(){
+    	navigationSteps.navigateTo(Constants.HOST);
+    	createAccountSteps.goToRegistrationPage();
+    	registrationSteps.typeEmail(userEmail);
+    	registrationSteps.typePassword(userPassword);
+    	registrationSteps.typeConfirmPassword(userPassword);
+    	registrationSteps.clickCreateNewAccountButton();
+    	registrationSteps.assertUserNameIsMissing();
+    }
+    
+    @Test
+    public void us006CreateAccountWithoutEmail(){
+    	navigationSteps.navigateTo(Constants.HOST);
+    	createAccountSteps.goToRegistrationPage();
+    	registrationSteps.typeUsername(userName);
+    	registrationSteps.typePassword(userPassword);
+    	registrationSteps.typeConfirmPassword(userPassword);
+    	registrationSteps.clickCreateNewAccountButton();
+    	registrationSteps.assertEmailIsMissing();
     }
     
     

@@ -89,16 +89,12 @@ public class RegistrationPage extends AbstractPage{
 	
 	public void usernameAlreadyExists(){
 		assertTrue("An account with an existing userName was created", 
-    			getExistingCredentialsErrorText().contains("The name " + "victor" + " is already taken."));
+				getEmailSentSuccesfullyText().contains("The name " + "victor" + " is already taken."));
 	}
 	
 	public void emailAlreadyExists(){
 		assertTrue("An account with an existing userName was created", 
-    			getExistingCredentialsErrorText().contains("The e-mail address " + "victortomaciprian@gmail.com" + " is already registered. "));
-	}
-	
-	public String getExistingCredentialsErrorText(){
-		return unableToSendEmail.getText();
+				getEmailSentSuccesfullyText().contains("The e-mail address " + "victortomaciprian@gmail.com" + " is already registered. "));
 	}
 	
 	public void clickRecoverPasswordLink(){
@@ -114,5 +110,12 @@ public class RegistrationPage extends AbstractPage{
 		sendNewPasswordButton.click();
 	} 
 	
+	public void userNameFieldIsRequiredMessage(){
+		assertTrue("An account without an username was created", getEmailSentSuccesfullyText().contains("Username field is required."));
+	}
+	
+	public void emailFieldIsRequiredMessage(){
+		assertTrue("An account without an email was created", getEmailSentSuccesfullyText().contains("E-mail address field is required."));
+	}
 	
 }
