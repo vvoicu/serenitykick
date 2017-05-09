@@ -1,7 +1,7 @@
 package com.drupal.pages.product;
 
 import com.drupal.pages.AbstractPage;
-import com.drupal.Tools.ProductObjectList;
+import tools.ProductObjectList;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;

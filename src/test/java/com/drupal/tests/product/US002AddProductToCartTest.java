@@ -1,12 +1,12 @@
 package com.drupal.tests.product;
 
-import com.drupal.Tools.Constants;
+import tools.Constants;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.drupal.Tools.Helpers;
+import tools.Helpers;
 import com.drupal.pages.cart.ShoppingCartPage;
 import com.drupal.steps.navigation.NavigationSteps;
 import com.drupal.steps.product.AllProductsSteps;
@@ -47,8 +47,8 @@ public class US002AddProductToCartTest extends BaseTest {
         Helpers helpers = new Helpers();
 
 
-        navigationSteps.navigateTo(Constants.Url);
-        navigationSteps.selectProductCategoryFromMenuList(Constants.allProductsMenuItem);
+        navigationSteps.navigateTo(Constants.HOST);
+        navigationSteps.selectProductCategoryFromMenuList(Constants.ALLPRODUCTSMENUITEM);
         allProductsSteps.selectSpecifiedProduct(productName1);
         specifiedProductSteps.checkIfThePathToTheProductIsCorrect(productName1);
         String productSkuFromProductPage1 = specifiedProductSteps.getProductCode();
@@ -65,7 +65,7 @@ public class US002AddProductToCartTest extends BaseTest {
         helpers.assertProductDetails(productSkuFromProductPage1,popupProductSku1,productQuanity1,popUpProductQuantity1,productDefaultPrice1,totalProductPrice1);
         specifiedProductSteps.createAProductDetailsList();
         specifiedProductSteps.clickContinueShoppingButton();
-        navigationSteps.selectProductCategoryFromMenuList(Constants.allProductsMenuItem);
+        navigationSteps.selectProductCategoryFromMenuList(Constants.ALLPRODUCTSMENUITEM);
         allProductsSteps.selectSpecifiedProduct(productName2);
         specifiedProductSteps.checkIfThePathToTheProductIsCorrect(productName2);
         String productSkuFromProductPage2 = specifiedProductSteps.getProductCode();
