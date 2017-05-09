@@ -1,16 +1,17 @@
 package com.drupal.tests.shopping.cart;
 
+import com.drupal.steps.shopping.cart.ShoppingCartListSteps;
+import tools.Constants;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.drupal.Tools.Constants;
-import com.drupal.Tools.Helpers;
+import tools.Helpers;
 import com.drupal.pages.cart.ShoppingCartPage;
 import com.drupal.steps.navigation.NavigationSteps;
 import com.drupal.steps.product.AllProductsSteps;
-import com.drupal.steps.product.CommerceGuyLaptopBagSteps;
-import com.drupal.steps.shopping.cart.ShoppingCartListSteps;
+import com.drupal.steps.product.SpecifiedProductSteps;
 import com.drupal.tests.BaseTest;
 
 import net.serenitybdd.junit.runners.SerenityRunner;
@@ -35,55 +36,51 @@ public class US010ShoppingCartListTest extends BaseTest {
 		productQuanity2 = "2";
 		Helpers helpers = new Helpers();
 
-		navigationSteps.navigateTo(Constants.Url);
-		navigationSteps.selectProductCategoryFromMenuList(Constants.allProductsMenuItem);
+		navigationSteps.navigateTo(Constants.HOST);
+		navigationSteps.selectProductCategoryFromMenuList(Constants.ALLPRODUCTSMENUITEM);
 		allProductsSteps.selectSpecifiedProduct(productName1);
-		commerceGuyLaptopBagSteps.checkIfThePathToTheProductIsCorrect(productName1);
-		String productSkuFromProductPage1 = commerceGuyLaptopBagSteps.getProductCode();
-		String productPriceFromProductPage1 = helpers.removeCharacters(commerceGuyLaptopBagSteps.getProductPrice());
+		specifiedProductSteps.checkIfThePathToTheProductIsCorrect(productName1);
+		String productSkuFromProductPage1 = specifiedProductSteps.getProductCode();
+		String productPriceFromProductPage1 = helpers.removeCharacters(specifiedProductSteps.getProductPrice());
 		double productDefaultPrice1 = Double.parseDouble(productPriceFromProductPage1);
-		commerceGuyLaptopBagSteps.clickReadMoreDescriptionButton();
-		commerceGuyLaptopBagSteps.clickIncreaseProductQuantityBy1();
-		commerceGuyLaptopBagSteps.clickIncreaseProductQuantityBy1();
-		commerceGuyLaptopBagSteps.clickAddToCartButton();
-		String popupProductSku1 = helpers
-				.replaceNewLineFromStringWithSpace(commerceGuyLaptopBagSteps.getPopUpProductSku());
-		String popUpProductQuantity1 = commerceGuyLaptopBagSteps.getPopUpProductQuantity();
-		String popUpTotalPrice1 = helpers.removeCharacters(commerceGuyLaptopBagSteps.getPopUpTotalPrice());
+		specifiedProductSteps.clickReadMoreDescriptionButton();
+		specifiedProductSteps.clickIncreaseProductQuantityBy1();
+		specifiedProductSteps.clickIncreaseProductQuantityBy1();
+		specifiedProductSteps.clickAddToCartButton();
+		String popupProductSku1 = helpers.replaceNewLineFromStringWithSpace(specifiedProductSteps.getPopUpProductSku());
+		String popUpProductQuantity1 = specifiedProductSteps.getPopUpProductQuantity();
+		String popUpTotalPrice1 = helpers.removeCharacters(specifiedProductSteps.getPopUpTotalPrice());
 		double totalProductPrice1 = Double.parseDouble(popUpTotalPrice1);
-		helpers.assertProductDetails(productSkuFromProductPage1, popupProductSku1, productQuanity1,
-				popUpProductQuantity1, productDefaultPrice1, totalProductPrice1);
-		commerceGuyLaptopBagSteps.createAProductDetailsList();
-		commerceGuyLaptopBagSteps.clickContinueShoppingButton();
-		navigationSteps.selectProductCategoryFromMenuList(Constants.allProductsMenuItem);
+		helpers.assertProductDetails(productSkuFromProductPage1,popupProductSku1,productQuanity1,popUpProductQuantity1,productDefaultPrice1,totalProductPrice1);
+		specifiedProductSteps.createAProductDetailsList();
+		specifiedProductSteps.clickContinueShoppingButton();
+		navigationSteps.selectProductCategoryFromMenuList(Constants.ALLPRODUCTSMENUITEM);
 		allProductsSteps.selectSpecifiedProduct(productName2);
-		commerceGuyLaptopBagSteps.checkIfThePathToTheProductIsCorrect(productName2);
-		String productSkuFromProductPage2 = commerceGuyLaptopBagSteps.getProductCode();
-		String productPriceFromProductPage2 = helpers.removeCharacters(commerceGuyLaptopBagSteps.getProductPrice());
+		specifiedProductSteps.checkIfThePathToTheProductIsCorrect(productName2);
+		String productSkuFromProductPage2 = specifiedProductSteps.getProductCode();
+		String productPriceFromProductPage2 = helpers.removeCharacters(specifiedProductSteps.getProductPrice());
 		double productDefaultPrice2 = Double.parseDouble(productPriceFromProductPage2);
-		commerceGuyLaptopBagSteps.clickReadMoreDescriptionButton();
-		commerceGuyLaptopBagSteps.clickIncreaseProductQuantityBy1();
-		commerceGuyLaptopBagSteps.clickAddToCartButton();
-		String popupProductSku2 = helpers
-				.replaceNewLineFromStringWithSpace(commerceGuyLaptopBagSteps.getPopUpProductSku());
-		String popUpProductQuantity2 = commerceGuyLaptopBagSteps.getPopUpProductQuantity();
-		String popUpTotalPrice2 = helpers.removeCharacters(commerceGuyLaptopBagSteps.getPopUpTotalPrice());
+		specifiedProductSteps.clickReadMoreDescriptionButton();
+		specifiedProductSteps.clickIncreaseProductQuantityBy1();
+		specifiedProductSteps.clickAddToCartButton();
+		String popupProductSku2 = helpers.replaceNewLineFromStringWithSpace(specifiedProductSteps.getPopUpProductSku());
+		String popUpProductQuantity2 = specifiedProductSteps.getPopUpProductQuantity();
+		String popUpTotalPrice2 = helpers.removeCharacters(specifiedProductSteps.getPopUpTotalPrice());
 		double totalProductPrice2 = Double.parseDouble(popUpTotalPrice2);
-		helpers.assertProductDetails(productSkuFromProductPage2, popupProductSku2, productQuanity2,
-				popUpProductQuantity2, productDefaultPrice2, totalProductPrice2);
-		commerceGuyLaptopBagSteps.createAProductDetailsList();
-		commerceGuyLaptopBagSteps.clickGoToCheckoutButton();
+		helpers.assertProductDetails(productSkuFromProductPage2,popupProductSku2,productQuanity2,popUpProductQuantity2,productDefaultPrice2,totalProductPrice2);
+		specifiedProductSteps.createAProductDetailsList();
+		specifiedProductSteps.clickGoToCheckoutButton();
 
 	}
 
 	@Steps
+	public AllProductsSteps allProductsSteps;
+	@Steps
 	public NavigationSteps navigationSteps;
 	@Steps
-	public CommerceGuyLaptopBagSteps commerceGuyLaptopBagSteps;
+	public SpecifiedProductSteps specifiedProductSteps;
 	@Steps
 	public ShoppingCartPage shoppingCartPage;
-	@Steps
-	private AllProductsSteps allProductsSteps;
 
 	@Steps
 	private ShoppingCartListSteps shoppingCartListSteps;
