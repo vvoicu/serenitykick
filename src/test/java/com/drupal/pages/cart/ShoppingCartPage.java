@@ -56,6 +56,9 @@ public class ShoppingCartPage extends AbstractPage {
 
 	}	
 	
-
+	public void checkDetailValue(String productCode, String detailName, String expectedDetailValue){
+		Assert.assertTrue("The detail value is incorrect!", getProductDetailValue(productCode, detailName).contentEquals(expectedDetailValue));
+		
+	}
 
 }
