@@ -22,12 +22,12 @@ public class AbstractPage extends PageObject {
 		}
 		return null;
 	}
-
+/*
 	protected void waitForPageToLoad() {
-		new WebDriverWait(driver, 30)
+		new WebDriverWait(driver, 1)
 				.until(ExpectedConditions.jsReturnsValue("return document.readyState==\"complete\";"));
 	}
-
+*/
 	
 
 }
