@@ -56,10 +56,12 @@ public class RegistrationSteps extends AbstractSteps {
 	}
 	
 	@Step
-	public void isAccountCreatedSuccesfully(){
+	public void assertCreatedAccount(){
 		assertTrue("Not the expected message", getRegistrationSuccesfulText().contains("Registration successful. You are now logged in."));
 		assertFalse("Unable to send e-mail",getEmailSentSuccesfullyMessage().contains("Unable to send e-mail. Contact the site administrator if the problem persists."));
 	}
+	
+	
 	
 	@StepGroup
 	public void performRegistration(){
@@ -75,7 +77,12 @@ public class RegistrationSteps extends AbstractSteps {
 		clickCreateNewAccountButton();
 		getRegistrationSuccesfulText();
 		getEmailSentSuccesfullyMessage();
-		isAccountCreatedSuccesfully();
+		assertCreatedAccount();
+	}
+	
+	@Step
+	public String getExistingCredentialsErrorMessage(){
+		return registration.getExistingCredentialsErrorText();
 	}
 	
 

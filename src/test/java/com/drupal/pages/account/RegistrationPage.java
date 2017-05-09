@@ -34,11 +34,10 @@ public class RegistrationPage extends AbstractPage{
 	@FindBy(css = "div.messages.error")
 	WebElement unableToSendEmail;
 	
-	@FindBy(css ="div.messages.error ul li:first-child" )
-	String userNameAlreadyExists;
+	@FindBy(css ="div.messages.error")
+	WebElement credentialsAlreadyExist;
 	
-	@FindBy(css ="div.messages.error ul li:last-child")
-	String emailAddressAlreadyExists;
+	
 	
 	public void typeUsername(String username){
 		userInput.clear();
@@ -71,6 +70,10 @@ public class RegistrationPage extends AbstractPage{
 	
 	public String getEmailSentSuccesfullyText(){
 		return unableToSendEmail.getText();
+	}
+	
+	public String getExistingCredentialsErrorText(){
+		return credentialsAlreadyExist.getText();
 	}
 	
 	

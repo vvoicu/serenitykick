@@ -40,7 +40,6 @@ public class US001CreateAccountTest extends BaseTest{
     public NavigationSteps navigationSteps;
     
 
-    public String url;
     public String userName;
     public String userEmail;
     public String userPassword;
@@ -51,27 +50,25 @@ public class US001CreateAccountTest extends BaseTest{
     
     @Before
     public void dataSetup(){
-    	url = Constants.HOST;
     	
     	userName = RandomData.getUniqueString(5, 9);
     	userEmail =  RandomData.getUniqueGmail("victortomaciprian") ;
     	userPassword = RandomData.getUniquePassword();
     	
-    	existingUserName = "victor";
-    	existingEmail = "victortomaciprian@gmail.com";
-    	
     }
+    
     @After
     public void closeDrive(){
     	super.webdriver.quit();
     	super.webdriver.close();
     }
     
+    
     @Test
     public void us001CreateAccountTest(){
 
     	
-    	navigationSteps.navigateTo(url);
+    	navigationSteps.navigateTo(Constants.HOST);
     	createAccountSteps.goToRegistrationPage();
     	registrationSteps.typeUsername(userName);
     	registrationSteps.typeEmail(userEmail);
@@ -79,22 +76,23 @@ public class US001CreateAccountTest extends BaseTest{
     	registrationSteps.typeConfirmPassword(userPassword);
     	registrationSteps.clickCreateNewAccountButton();
     	
-   // 	assertEquals("Not the expected message","Status messageRegistration successful. You are now logged in.",
-  	//		  registrationSteps.getRegistrationSuccesfulText());
     	assertTrue("Registration was unsuccesful", registrationSteps.getRegistrationSuccesfulText().contains("Registration successful. You are now logged in."));
     	assertFalse("Unable to send e-mail",registrationSteps.getEmailSentSuccesfullyMessage().contains("Unable to send e-mail. Contact the site administrator if the problem persists."));
     }
     
     
-    @Ignore
+    
     @Test
     public void us002CreateAccountWithExistingUserNameTest(){
-    	navigationSteps.navigateTo(url);
+    	navigationSteps.navigateTo(Constants.HOST);
     	createAccountSteps.goToRegistrationPage();
-    	registrationSteps.typeUsername(existingUserName);
+    	registrationSteps.typeUsername("victor");
     	registrationSteps.typeEmail(userEmail);
     	registrationSteps.typePassword(userPassword);
     	registrationSteps.typeConfirmPassword(userPassword);
     	registrationSteps.clickCreateNewAccountButton();
+    	
+    	assertTrue("An account with an existing userName was created", 
+    			registrationSteps.getExistingCredentialsErrorMessage().contains("The name " + "victor" + " is already taken."));
     }
 }
