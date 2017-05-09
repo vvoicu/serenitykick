@@ -24,7 +24,7 @@ public class ShoppingCartPage extends AbstractPage {
 
 		List<WebElement> cartListElements = getDriver().findElements(By.cssSelector(".views-table.cols-5 tr"));
 		for (WebElement productRowNow : cartListElements) {
-			if (productRowNow.findElement(By.cssSelector("")).getText().toLowerCase()
+			if (productRowNow.findElement(By.cssSelector(".commerce-product-sku")).getText().toLowerCase()
 					.contentEquals(productCode.toLowerCase())) {
 				return productRowNow;
 			}
