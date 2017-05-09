@@ -85,6 +85,10 @@ public class RegistrationSteps extends AbstractSteps {
 		return registration.getExistingCredentialsErrorText();
 	}
 	
+	@Step
+	public void clickRecoverPasswordLink(){
+		registration.clickRecoverPasswordLink();
+	}
 
 
 }

@@ -37,6 +37,8 @@ public class RegistrationPage extends AbstractPage{
 	@FindBy(css ="div.messages.error")
 	WebElement credentialsAlreadyExist;
 	
+	@FindBy(css = "div.messages.error a")
+	WebElement recoverPasswordLink;
 	
 	
 	public void typeUsername(String username){
@@ -74,6 +76,10 @@ public class RegistrationPage extends AbstractPage{
 	
 	public String getExistingCredentialsErrorText(){
 		return credentialsAlreadyExist.getText();
+	}
+	
+	public void clickRecoverPasswordLink(){
+		recoverPasswordLink.click();
 	}
 	
 	

@@ -64,7 +64,6 @@ public class US001CreateAccountTest extends BaseTest{
     	super.webdriver.close();
     }
     
-    
     @Test
     public void us001CreateAccountTest(){
 
@@ -81,10 +80,8 @@ public class US001CreateAccountTest extends BaseTest{
     	assertFalse("Unable to send e-mail",registrationSteps.getEmailSentSuccesfullyMessage().contains("Unable to send e-mail. Contact the site administrator if the problem persists."));
     }
     
-    
-    
     @Test
-    public void us002CreateAccountWithExistingUserNameTest(){
+    public void us001CreateAccountWithExistingUserNameTest(){
     	navigationSteps.navigateTo(Constants.HOST);
     	createAccountSteps.goToRegistrationPage();
     	registrationSteps.typeUsername("victor");
@@ -96,4 +93,22 @@ public class US001CreateAccountTest extends BaseTest{
     	assertTrue("An account with an existing userName was created", 
     			registrationSteps.getExistingCredentialsErrorMessage().contains("The name " + "victor" + " is already taken."));
     }
+   
+    @Test
+    public void us001CreateAccountWithExistingEmailTest(){
+    	navigationSteps.navigateTo(Constants.HOST);
+    	createAccountSteps.goToRegistrationPage();
+    	registrationSteps.typeUsername(userName);
+    	registrationSteps.typeEmail("victortomaciprian@gmail.com");
+    	registrationSteps.typePassword(userPassword);
+    	registrationSteps.typeConfirmPassword(userPassword);
+    	registrationSteps.clickCreateNewAccountButton();
+    	
+    	assertTrue("An account with an existing userName was created", 
+    			registrationSteps.getExistingCredentialsErrorMessage().contains("The e-mail address " + "victortomaciprian@gmail.com" + " is already registered. "));
+    }
+    
+    
+    
+    
 }
