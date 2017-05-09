@@ -56,9 +56,8 @@ public class RegistrationSteps extends AbstractSteps {
 	}
 	
 	@Step
-	public void assertCreatedAccount(){
-		assertTrue("Not the expected message", getRegistrationSuccesfulText().contains("Registration successful. You are now logged in."));
-		assertFalse("Unable to send e-mail",getEmailSentSuccesfullyMessage().contains("Unable to send e-mail. Contact the site administrator if the problem persists."));
+	public void assertAccountIsCreatedSuccessfuly(){
+		registration.accountIsSuccessfulyRegistered();
 	}
 	
 	
@@ -77,18 +76,37 @@ public class RegistrationSteps extends AbstractSteps {
 		clickCreateNewAccountButton();
 		getRegistrationSuccesfulText();
 		getEmailSentSuccesfullyMessage();
-		assertCreatedAccount();
+		assertAccountIsCreatedSuccessfuly();
 	}
 	
 	@Step
-	public String getExistingCredentialsErrorMessage(){
-		return registration.getExistingCredentialsErrorText();
+	public void assertUsernameAlreadyExists(){
+		registration.usernameAlreadyExists();
+	}
+	
+	@Step
+	public void assertEmailAlreadyExists(){
+		registration.emailAlreadyExists();
 	}
 	
 	@Step
 	public void clickRecoverPasswordLink(){
 		registration.clickRecoverPasswordLink();
 	}
-
+	
+	@Step
+	public void typeEmailForPasswordRecovery(String recoveryEmail){
+		registration.typeEmailForPasswordRecovery(recoveryEmail);
+	}
+	
+	@Step 
+	public void clickSendEmailForPasswordRecoveryButton(){
+		registration.clickSendPasswordToEmailButton();
+	}
+	
+	@Step
+	public void assertEmailIsSent(){
+		registration.unableToSendEmailErrorMessage();
+	}
 
 }

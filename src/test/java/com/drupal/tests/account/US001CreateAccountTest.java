@@ -63,7 +63,7 @@ public class US001CreateAccountTest extends BaseTest{
     	super.webdriver.quit();
     	super.webdriver.close();
     }
-    
+  
     @Test
     public void us001CreateAccountTest(){
 
@@ -75,13 +75,13 @@ public class US001CreateAccountTest extends BaseTest{
     	registrationSteps.typePassword(userPassword);
     	registrationSteps.typeConfirmPassword(userPassword);
     	registrationSteps.clickCreateNewAccountButton();
+    	registrationSteps.assertAccountIsCreatedSuccessfuly();
     	
-    	assertTrue("Registration was unsuccesful", registrationSteps.getRegistrationSuccesfulText().contains("Registration successful. You are now logged in."));
-    	assertFalse("Unable to send e-mail",registrationSteps.getEmailSentSuccesfullyMessage().contains("Unable to send e-mail. Contact the site administrator if the problem persists."));
     }
     
+
     @Test
-    public void us001CreateAccountWithExistingUserNameTest(){
+    public void us002CreateAccountWithExistingUserNameTest(){
     	navigationSteps.navigateTo(Constants.HOST);
     	createAccountSteps.goToRegistrationPage();
     	registrationSteps.typeUsername("victor");
@@ -89,13 +89,13 @@ public class US001CreateAccountTest extends BaseTest{
     	registrationSteps.typePassword(userPassword);
     	registrationSteps.typeConfirmPassword(userPassword);
     	registrationSteps.clickCreateNewAccountButton();
+    	registrationSteps.assertUsernameAlreadyExists();
     	
-    	assertTrue("An account with an existing userName was created", 
-    			registrationSteps.getExistingCredentialsErrorMessage().contains("The name " + "victor" + " is already taken."));
     }
+    
    
     @Test
-    public void us001CreateAccountWithExistingEmailTest(){
+    public void us003CreateAccountWithExistingEmailTest(){
     	navigationSteps.navigateTo(Constants.HOST);
     	createAccountSteps.goToRegistrationPage();
     	registrationSteps.typeUsername(userName);
@@ -103,12 +103,24 @@ public class US001CreateAccountTest extends BaseTest{
     	registrationSteps.typePassword(userPassword);
     	registrationSteps.typeConfirmPassword(userPassword);
     	registrationSteps.clickCreateNewAccountButton();
+    	registrationSteps.assertEmailAlreadyExists();
     	
-    	assertTrue("An account with an existing userName was created", 
-    			registrationSteps.getExistingCredentialsErrorMessage().contains("The e-mail address " + "victortomaciprian@gmail.com" + " is already registered. "));
     }
     
-    
+    @Test 
+    public void us004RecoverPasswordTest(){
+    	navigationSteps.navigateTo(Constants.HOST);
+    	createAccountSteps.goToRegistrationPage();
+    	registrationSteps.typeUsername(userName);
+    	registrationSteps.typeEmail("victortomaciprian@gmail.com");
+    	registrationSteps.typePassword(userPassword);
+    	registrationSteps.typeConfirmPassword(userPassword);
+    	registrationSteps.clickCreateNewAccountButton();
+    	registrationSteps.clickRecoverPasswordLink();
+    	registrationSteps.typeEmailForPasswordRecovery("victortomaciprian@gmail.com");
+    	registrationSteps.clickSendEmailForPasswordRecoveryButton();
+    	registrationSteps.assertEmailIsSent();
+    }
     
     
 }
