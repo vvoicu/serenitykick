@@ -11,19 +11,20 @@ import java.util.List;
  */
 public class ProductObjectList {
 
-    WebElement productSku;
-    WebElement productQuantity;
-    WebElement productPrice;
+    String productSku;
+    String productQuantity;
+    String productPrice;
 
 
-    public ProductObjectList(WebElement productSku, WebElement productPrice, WebElement productQuantity){
+    public ProductObjectList(String productSku, String productPrice, String productQuantity){
         this.productQuantity = productQuantity;
         this.productPrice = productPrice;
         this.productSku = productSku;
 
-
-
-
     }
+    public String toString(){
+        return "Product " + productSku + ", Product Price: " + productPrice + ", Product Quantity: " + productQuantity;
+    }
+
 
 }

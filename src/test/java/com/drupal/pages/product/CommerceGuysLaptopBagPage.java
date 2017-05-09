@@ -56,7 +56,7 @@ public class CommerceGuysLaptopBagPage extends AbstractPage {
 
     public void makeAProductDetailsList(){
         List<ProductObjectList> productDetails = new ArrayList<ProductObjectList>();
-        productDetails.add(new ProductObjectList(productCode, productPrice, popupProductQuantity));
+        productDetails.add(new ProductObjectList(productCode.getText(), productPrice.getText(), popupProductQuantity.getText()));
     }
 
     public void checkIfThePathToTheProductIsCorrect(String productName){
