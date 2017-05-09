@@ -35,7 +35,7 @@ public class ShoppingCartPage extends AbstractPage {
 	public String getPropertyValue(String productCode, String propertyName) {
 		boolean isPropertyFound = false;
 		WebElement shoppingCartItem = getShoppingCartItem(productCode);
-		List<WebElement> propertiesList = shoppingCartItem.findElements(By.cssSelector(""));
+		List<WebElement> propertiesList = shoppingCartItem.findElements(By.cssSelector(".content div[class*='field-name']"));
 		for (WebElement propertyItem : propertiesList) {
 			propertyItem.getText().toLowerCase().contains(propertyName.toLowerCase() + ":");
 			String propertyParts[] = propertyItem.getText().split(": ");
@@ -44,5 +44,18 @@ public class ShoppingCartPage extends AbstractPage {
 		Assert.assertTrue("The property was not found!", isPropertyFound);
 		return null;
 	}
+	
+	public void checkPropertyValue(String productCode, String propertyName, String expectedPropertyValue){
+		Assert.assertTrue("The property value is incorrect!", getPropertyValue(productCode, propertyName).contentEquals(expectedPropertyValue));
+		
+	}
+	
+	public String getProductDetailValue(String productCode, String detailName) {
+		WebElement shoppingCartItem = getShoppingCartItem(productCode);
+		return shoppingCartItem.findElement(By.cssSelector("td[class*='"+detailName.toLowerCase()+"']")).getAttribute("value");
+
+	}	
+	
+
 
 }

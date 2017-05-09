@@ -42,10 +42,11 @@ public class US002AddProductToCartTest extends BaseTest {
     @Steps
     public ShoppingCartPage shoppingCartPage;
 
-
     @Test
     public void addTwoProductsToCartFromProductPage(){
         Helpers helpers = new Helpers();
+
+
         navigationSteps.navigateTo(Constants.Url);
         navigationSteps.selectProductCategoryFromMenuList(Constants.allProductsMenuItem);
         allProductsSteps.selectSpecifiedProduct(productName1);
