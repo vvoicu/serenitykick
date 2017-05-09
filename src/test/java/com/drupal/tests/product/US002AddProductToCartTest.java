@@ -39,12 +39,11 @@ public class US002AddProductToCartTest extends BaseTest {
     @Steps
     public ShoppingCartPage shoppingCartPage;
 
-
     @Test
     public void addTwoProductsToCartFromProductPage(){
         Helpers helpers = new Helpers();
         navigationSteps.navigateTo(url);
-        navigationSteps.selectProductCategoryFromMenuList();
+        navigationSteps.selectProductCategoryFromMenuList("All Products");
         allProductsSteps.selectSpecifiedProduct(productName1);
         commerceGuyLaptopBagSteps.checkIfThePathToTheProductIsCorrect(productName1);
         String productSkuFromProductPage1 = commerceGuyLaptopBagSteps.getProductCode();
@@ -62,7 +61,7 @@ public class US002AddProductToCartTest extends BaseTest {
         Assert.assertTrue("The total price does not match the products price x quantity!", helpers.multiplyTwoNumbers(productDefaultPrice1,2) == totalProductPrice1);
         commerceGuyLaptopBagSteps.createAProductDetailsList();
         commerceGuyLaptopBagSteps.clickContinueShoppingButton();
-        navigationSteps.selectProductCategoryFromMenuList();
+        navigationSteps.selectProductCategoryFromMenuList("All Products");
         allProductsSteps.selectSpecifiedProduct(productName2);
         commerceGuyLaptopBagSteps.checkIfThePathToTheProductIsCorrect(productName2);
         String productSkuFromProductPage2 = commerceGuyLaptopBagSteps.getProductCode();

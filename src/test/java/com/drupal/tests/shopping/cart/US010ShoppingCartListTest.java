@@ -1,9 +1,9 @@
 package com.drupal.tests.shopping.cart;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.drupal.pages.cart.ShoppingCartPage;
 import com.drupal.steps.product.AllProductsSteps;
 import com.drupal.steps.shopping.cart.ShoppingCartListSteps;
 import com.drupal.tests.BaseTest;
@@ -24,10 +24,12 @@ public class US010ShoppingCartListTest extends BaseTest {
 
 	@Steps
 	private AllProductsSteps allProductsSteps;
-	
+
 	@Steps
 	private ShoppingCartListSteps shoppingCartListSteps;
-	
-	
+
+	@Test
+	public void testName() {
+	}
 
 }

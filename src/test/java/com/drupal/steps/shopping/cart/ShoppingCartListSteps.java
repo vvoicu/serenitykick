@@ -12,8 +12,7 @@ public class ShoppingCartListSteps extends AbstractSteps {
 	private ShoppingCartPage shoppingCartPage;
 	
 	@Step
-	public String getPropertyValue(String productCode, String propertyName) {
-		 return shoppingCartPage.getPropertyValue(productCode, propertyName);
+	 public void checkPropertyValue(String productCode, String propertyName, String expectedPropertyValue){
+		shoppingCartPage.checkPropertyValue(productCode, propertyName, expectedPropertyValue);
 	}
-
 }
