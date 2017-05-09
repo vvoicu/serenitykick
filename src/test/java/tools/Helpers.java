@@ -1,4 +1,4 @@
-package com.drupal.Tools;
+package tools;
 
 import org.junit.Assert;
 
