@@ -151,6 +151,30 @@ public class RegistrationSteps extends AbstractSteps {
 		clickCreateNewAccountButton();
 		assertEmailIsMissing();
 	}
-
-
+	
+	@Step
+	public void assertmatchingPasswords(){
+		registration.passwordsMatch();
+	}
+	
+	@StepGroup
+	public void checkMatchingPasswordsAgainstEachOther(String password){
+		navigateToAccount.goToRegistrationPage();
+		typePassword(password);
+		typeConfirmPassword(password);
+		assertmatchingPasswords();
+	}
+	
+	@Step
+	public void assertNotMatchingPasswords(){
+		registration.passwordsNotMatching();
+	}
+	
+	@StepGroup
+	public void checkNotMatchingPasswordsAgainstEachOther(String password){
+		navigateToAccount.goToRegistrationPage();
+		typePassword(password);
+		typeConfirmPassword("victortomaciprian@gmail.com");
+		assertNotMatchingPasswords();
+	}
 }

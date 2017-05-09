@@ -46,6 +46,9 @@ public class RegistrationPage extends AbstractPage{
 	@FindBy(css = "input#edit-submit")
 	WebElement sendNewPasswordButton;
 	
+	@FindBy(css = "div.password-confirm span")
+	WebElement passwordsMatchSpan;
+	
 	public void typeUsername(String username){
 		userInput.clear();
 		userInput.sendKeys(username);
@@ -116,6 +119,18 @@ public class RegistrationPage extends AbstractPage{
 	
 	public void emailFieldIsRequiredMessage(){
 		assertTrue("An account without an email was created", getEmailSentSuccesfullyText().contains("E-mail address field is required."));
+	}
+	
+	public String getPasswordsMatchText(){
+		return passwordsMatchSpan.getText();
+	}
+	
+	public void passwordsMatch(){
+		assertTrue("Matching passwords were identified as not matching", getPasswordsMatchText().contentEquals("yes"));
+	}
+	
+	public void passwordsNotMatching(){
+		assertTrue("Not matching passwords were identified as matching", getPasswordsMatchText().contentEquals("no"));
 	}
 	
 }
