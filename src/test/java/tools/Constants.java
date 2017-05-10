@@ -15,5 +15,6 @@ public class Constants {
     public static final String TOGEEKOUTWITHMENUITEM = "To Geek Out";
     public static final String TOWEARMENUITEM = "To Wear";
     public static final String ALLPRODUCTSMENUITEM = "All Products";
+    public static final String CSV_FILES_PATH = "src/test/resources/csv_files/";
 
 }
