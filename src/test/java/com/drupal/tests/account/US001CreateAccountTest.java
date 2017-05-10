@@ -84,12 +84,14 @@ public class US001CreateAccountTest extends BaseTest{
     	registrationSteps.assertEmailIsSent();
     }
     
+    @Ignore
     @Test
     public void us005CreateAccountWithoutUserNameTest(){
     	navigationSteps.navigateTo(Constants.HOST);
     	registrationSteps.registerWithoutAnUsername(userEmail, userPassword);
     }
     
+    @Ignore
     @Test
     public void us006CreateAccountWithoutEmailTest(){
     	navigationSteps.navigateTo(Constants.HOST);
@@ -97,17 +99,91 @@ public class US001CreateAccountTest extends BaseTest{
     	
     }
     
+    @Ignore
     @Test
     public void us007VerifyMatchingPasswordsTest(){
     	navigationSteps.navigateTo(Constants.HOST);
     	registrationSteps.checkMatchingPasswordsAgainstEachOther(userPassword);
     }
     
+    @Ignore
     @Test
     public void us008VerifyNotMatchingPasswordsTest(){
     	navigationSteps.navigateTo(Constants.HOST);
     	registrationSteps.checkNotMatchingPasswordsAgainstEachOther(userPassword);
     }
     
+    @Ignore
+    @Test
+    public void us009VerifyUppercaseTest(){
+    	navigationSteps.navigateTo(Constants.HOST);
+    	createAccountSteps.goToRegistrationPage();
+    	registrationSteps.clickOnPassworInput();
+    	registrationSteps.checkThatSuggestionsAppear(true, "Make it at least 6 characters","Add lowercase letters","Add uppercase letters",
+    												"Add numbers","Add punctuation");
+    	registrationSteps.typePassword("P");
+    	registrationSteps.checkThatSuggestionsAppear(false, "Add uppercase letters");
+    }
+    @Ignore
+    @Test
+    public void us009VerifyMinimumLengthTest(){
+    	navigationSteps.navigateTo(Constants.HOST);
+    	createAccountSteps.goToRegistrationPage();
+    	registrationSteps.clickOnPassworInput();
+    	registrationSteps.checkThatSuggestionsAppear(true, "Make it at least 6 characters","Add lowercase letters","Add uppercase letters",
+    												"Add numbers","Add punctuation");
+    	registrationSteps.typePassword("passwo");
+    	registrationSteps.checkThatSuggestionsAppear(false, "Make it at least 6 characters");
+    }
+    
+    @Ignore
+    @Test
+    public void us010VerifyLowerCaseSuggestionTest(){
+    	navigationSteps.navigateTo(Constants.HOST);
+    	createAccountSteps.goToRegistrationPage();
+    	registrationSteps.clickOnPassworInput();
+    	registrationSteps.checkThatSuggestionsAppear(true, "Make it at least 6 characters","Add lowercase letters","Add uppercase letters",
+    												"Add numbers","Add punctuation");
+    	registrationSteps.typePassword("p");
+    	registrationSteps.checkThatSuggestionsAppear(false, "Add lowercase letters");
+    }
+    @Ignore
+    @Test
+    public void us12VerifyNumbersSuggestionTest(){
+    	navigationSteps.navigateTo(Constants.HOST);
+    	navigationSteps.navigateTo(Constants.HOST);
+    	createAccountSteps.goToRegistrationPage();
+    	registrationSteps.clickOnPassworInput();
+    	registrationSteps.checkThatSuggestionsAppear(true, "Make it at least 6 characters","Add lowercase letters","Add uppercase letters",
+    												"Add numbers","Add punctuation");
+    	registrationSteps.typePassword("1");
+    	registrationSteps.checkThatSuggestionsAppear(false, "Add numbers");
+    }
+    @Ignore
+    @Test
+    public void us13VerifyPunctuationSuggestionTest(){
+    	navigationSteps.navigateTo(Constants.HOST);
+    	navigationSteps.navigateTo(Constants.HOST);
+    	createAccountSteps.goToRegistrationPage();
+    	registrationSteps.clickOnPassworInput();
+    	registrationSteps.checkThatSuggestionsAppear(true, "Make it at least 6 characters","Add lowercase letters","Add uppercase letters",
+    												"Add numbers","Add punctuation");
+    	registrationSteps.typePassword("_");
+    	registrationSteps.checkThatSuggestionsAppear(false, "Add punctuation");
+    }
+    
+    @Test
+    public void us14VerifyNoSuggestionsAppearTest(){
+    	navigationSteps.navigateTo(Constants.HOST);
+    	navigationSteps.navigateTo(Constants.HOST);
+    	createAccountSteps.goToRegistrationPage();
+    	registrationSteps.clickOnPassworInput();
+    	registrationSteps.checkThatSuggestionsAppear(true, "Make it at least 6 characters","Add lowercase letters","Add uppercase letters",
+    												"Add numbers","Add punctuation");
+    	registrationSteps.typePassword(userPassword);
+    	registrationSteps.checkThatSuggestionsAppear(false, "Make it at least 6 characters","Add lowercase letters","Add uppercase letters",
+				"Add numbers","Add punctuation");
+    	
+    }
     
 }
