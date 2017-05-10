@@ -1,5 +1,7 @@
 package com.drupal.tests.product;
 
+import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
+import net.thucydides.junit.annotations.UseTestDataFrom;
 import tools.Constants;
 
 import org.junit.Before;
@@ -16,13 +18,12 @@ import com.drupal.tests.BaseTest;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
 
-@RunWith(SerenityRunner.class)
-public class US002AddProductToCartTest extends BaseTest {
 
-    public String productName1 = "";
-    public String productName2 = "";
-    public String productQuanity1 = "";
-    public String productQuanity2 = "";
+@RunWith(SerenityRunner.class)
+public class US002AddTwoProductsToCartTest extends BaseTest {
+    public String productName1,productName2,productQuanity1,productQuanity2;
+
+
 
     @Before
     public void setup(){
@@ -31,6 +32,7 @@ public class US002AddProductToCartTest extends BaseTest {
         webdriver.manage().window().maximize();
         productQuanity1 = "3";
         productQuanity2 = "2";
+
     }
 
     @Steps
@@ -83,5 +85,6 @@ public class US002AddProductToCartTest extends BaseTest {
         specifiedProductSteps.clickGoToCheckoutButton();
 
     }
+
 
 }

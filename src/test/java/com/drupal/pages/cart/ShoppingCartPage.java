@@ -97,13 +97,10 @@ public class ShoppingCartPage extends AbstractPage {
 		List<WebElement> cartListElements = getDriver().findElements(By.cssSelector(".views-table.cols-5 tbody tr"));
 		String pricePerProduct = null;
 		for (WebElement productRowNow : cartListElements) {
-			System.out.println("Pretul ala ce trebe" + productRowNow.findElement(By.cssSelector(("td[class*='total']")))
-					.getText().replace("$", "").replace(" ", ""));
 			pricePerProduct = productRowNow.findElement(By.cssSelector(("td[class*='total']"))).getText()
 					.replace("$", "").replace(" ", "");
-
 			totalPrice += Float.parseFloat(pricePerProduct);
-			System.out.println("pret total " + totalPrice);
+
 		}
 
 		return totalPrice;

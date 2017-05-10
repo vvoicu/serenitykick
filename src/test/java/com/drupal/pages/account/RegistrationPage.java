@@ -46,6 +46,9 @@ public class RegistrationPage extends AbstractPage{
 	@FindBy(css = "input#edit-submit")
 	WebElement sendNewPasswordButton;
 	
+	@FindBy(css = "div.password-confirm span")
+	WebElement passwordsMatchSpan;
+	
 	public void typeUsername(String username){
 		userInput.clear();
 		userInput.sendKeys(username);
@@ -89,16 +92,12 @@ public class RegistrationPage extends AbstractPage{
 	
 	public void usernameAlreadyExists(){
 		assertTrue("An account with an existing userName was created", 
-    			getExistingCredentialsErrorText().contains("The name " + "victor" + " is already taken."));
+				getEmailSentSuccesfullyText().contains("The name " + "victor" + " is already taken."));
 	}
 	
 	public void emailAlreadyExists(){
 		assertTrue("An account with an existing userName was created", 
-    			getExistingCredentialsErrorText().contains("The e-mail address " + "victortomaciprian@gmail.com" + " is already registered. "));
-	}
-	
-	public String getExistingCredentialsErrorText(){
-		return unableToSendEmail.getText();
+				getEmailSentSuccesfullyText().contains("The e-mail address " + "victortomaciprian@gmail.com" + " is already registered. "));
 	}
 	
 	public void clickRecoverPasswordLink(){
@@ -114,5 +113,24 @@ public class RegistrationPage extends AbstractPage{
 		sendNewPasswordButton.click();
 	} 
 	
+	public void userNameFieldIsRequiredMessage(){
+		assertTrue("An account without an username was created", getEmailSentSuccesfullyText().contains("Username field is required."));
+	}
+	
+	public void emailFieldIsRequiredMessage(){
+		assertTrue("An account without an email was created", getEmailSentSuccesfullyText().contains("E-mail address field is required."));
+	}
+	
+	public String getPasswordsMatchText(){
+		return passwordsMatchSpan.getText();
+	}
+	
+	public void passwordsMatch(){
+		assertTrue("Matching passwords were identified as not matching", getPasswordsMatchText().contentEquals("yes"));
+	}
+	
+	public void passwordsNotMatching(){
+		assertTrue("Not matching passwords were identified as matching", getPasswordsMatchText().contentEquals("no"));
+	}
 	
 }

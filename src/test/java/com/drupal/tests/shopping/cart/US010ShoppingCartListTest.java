@@ -1,8 +1,9 @@
 package com.drupal.tests.shopping.cart;
 
+
 import tools.Constants;
 
-import org.assertj.core.error.ShouldBeEqualWithTimePrecision;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -51,8 +52,7 @@ public class US010ShoppingCartListTest extends BaseTest {
 		String popUpProductQuantity1 = specifiedProductSteps.getPopUpProductQuantity();
 		String popUpTotalPrice1 = helpers.removeCharacters(specifiedProductSteps.getPopUpTotalPrice());
 		double totalProductPrice1 = Double.parseDouble(popUpTotalPrice1);
-		helpers.assertProductDetails(productSkuFromProductPage1, popupProductSku1, productQuanity1,
-				popUpProductQuantity1, productDefaultPrice1, totalProductPrice1);
+		helpers.assertProductDetails(productSkuFromProductPage1,popupProductSku1,productQuanity1,popUpProductQuantity1,productDefaultPrice1,totalProductPrice1);
 		specifiedProductSteps.createAProductDetailsList();
 		specifiedProductSteps.clickContinueShoppingButton();
 		navigationSteps.selectProductCategoryFromMenuList(Constants.ALLPRODUCTSMENUITEM);
@@ -68,21 +68,20 @@ public class US010ShoppingCartListTest extends BaseTest {
 		String popUpProductQuantity2 = specifiedProductSteps.getPopUpProductQuantity();
 		String popUpTotalPrice2 = helpers.removeCharacters(specifiedProductSteps.getPopUpTotalPrice());
 		double totalProductPrice2 = Double.parseDouble(popUpTotalPrice2);
-		helpers.assertProductDetails(productSkuFromProductPage2, popupProductSku2, productQuanity2,
-				popUpProductQuantity2, productDefaultPrice2, totalProductPrice2);
+		helpers.assertProductDetails(productSkuFromProductPage2,popupProductSku2,productQuanity2,popUpProductQuantity2,productDefaultPrice2,totalProductPrice2);
 		specifiedProductSteps.createAProductDetailsList();
 		specifiedProductSteps.clickGoToCheckoutButton();
 
 	}
 
 	@Steps
+	public AllProductsSteps allProductsSteps;
+	@Steps
 	public NavigationSteps navigationSteps;
 	@Steps
 	public SpecifiedProductSteps specifiedProductSteps;
 	@Steps
 	public ShoppingCartPage shoppingCartPage;
-	@Steps
-	private AllProductsSteps allProductsSteps;
 
 	@Steps
 	private ShoppingCartListSteps shoppingCartListSteps;

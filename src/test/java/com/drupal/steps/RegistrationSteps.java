@@ -1,19 +1,15 @@
 package com.drupal.steps;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
-
 import com.drupal.pages.account.RegistrationPage;
+import com.drupal.pages.header.UserZonePage;
 
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.StepGroup;
-import tools.RandomData;
 
 public class RegistrationSteps extends AbstractSteps {
 	private static final long serialVersionUID = 816308171341383739L;
 	RegistrationPage registration = new RegistrationPage();
-	RandomData random = new RandomData();
+	UserZonePage navigateToAccount = new UserZonePage();
 	
 
 	@Step
@@ -63,19 +59,13 @@ public class RegistrationSteps extends AbstractSteps {
 	
 	
 	@StepGroup
-	public void performRegistration(){
-		String userName = random.getUniqueString(5, 9);
-		String email = random.getUniqueGmail("victortomaciprian");
-		String password = random.getUniquePassword();
-		
+	public void performRegistration(String userName, String email, String password){
+		navigateToAccount.goToRegistrationPage();
 		typeUsername(userName);
 		typeEmail(email);
 		typePassword(password);
-		typeConfirmPassword(password);
-		
+		typeConfirmPassword(password);		
 		clickCreateNewAccountButton();
-		getRegistrationSuccesfulText();
-		getEmailSentSuccesfullyMessage();
 		assertAccountIsCreatedSuccessfuly();
 	}
 	
@@ -84,9 +74,31 @@ public class RegistrationSteps extends AbstractSteps {
 		registration.usernameAlreadyExists();
 	}
 	
+	@StepGroup
+	public void registerWithExistingUserName(String userName, String email, String password){
+		navigateToAccount.goToRegistrationPage();
+		typeUsername(userName);
+		typeEmail(email);
+		typePassword(password);
+		typeConfirmPassword(password);		
+		clickCreateNewAccountButton();
+		assertUsernameAlreadyExists();
+	}
+	
 	@Step
 	public void assertEmailAlreadyExists(){
 		registration.emailAlreadyExists();
+	}
+	
+	@StepGroup
+	public void registerWithExistingEmail(String userName, String email, String password){
+		navigateToAccount.goToRegistrationPage();
+		typeUsername(userName);
+		typeEmail(email);
+		typePassword(password);
+		typeConfirmPassword(password);		
+		clickCreateNewAccountButton();
+		assertEmailAlreadyExists();
 	}
 	
 	@Step
@@ -105,8 +117,64 @@ public class RegistrationSteps extends AbstractSteps {
 	}
 	
 	@Step
-	public void assertEmailIsSent(){
-		registration.unableToSendEmailErrorMessage();
+	public void assertEmailIsSent() {
+		registration.getEmailSentSuccesfullyText();
+		
 	}
-
+	
+	@Step
+	public void assertUserNameIsMissing(){
+		registration.userNameFieldIsRequiredMessage();
+	}
+	
+	@StepGroup
+	public void registerWithoutAnUsername(String email, String password){
+		navigateToAccount.goToRegistrationPage();
+		typeEmail(email);
+		typePassword(password);
+		typeConfirmPassword(password);		
+		clickCreateNewAccountButton();
+		assertUserNameIsMissing();
+	}
+	
+	@Step
+	public void assertEmailIsMissing(){
+		registration.emailFieldIsRequiredMessage();
+	}
+	
+	@StepGroup
+	public void registerWithoutAnEmail(String userName, String password){
+		navigateToAccount.goToRegistrationPage();
+		typeUsername(userName);
+		typePassword(password);
+		typeConfirmPassword(password);		
+		clickCreateNewAccountButton();
+		assertEmailIsMissing();
+	}
+	
+	@Step
+	public void assertmatchingPasswords(){
+		registration.passwordsMatch();
+	}
+	
+	@StepGroup
+	public void checkMatchingPasswordsAgainstEachOther(String password){
+		navigateToAccount.goToRegistrationPage();
+		typePassword(password);
+		typeConfirmPassword(password);
+		assertmatchingPasswords();
+	}
+	
+	@Step
+	public void assertNotMatchingPasswords(){
+		registration.passwordsNotMatching();
+	}
+	
+	@StepGroup
+	public void checkNotMatchingPasswordsAgainstEachOther(String password){
+		navigateToAccount.goToRegistrationPage();
+		typePassword(password);
+		typeConfirmPassword("victortomaciprian@gmail.com");
+		assertNotMatchingPasswords();
+	}
 }
