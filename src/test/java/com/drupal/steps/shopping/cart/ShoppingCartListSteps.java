@@ -1,7 +1,5 @@
 package com.drupal.steps.shopping.cart;
 
-import org.junit.Assert;
-
 import com.drupal.pages.cart.ShoppingCartPage;
 import com.drupal.steps.AbstractSteps;
 
