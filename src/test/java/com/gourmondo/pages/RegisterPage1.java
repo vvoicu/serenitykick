@@ -156,5 +156,4 @@ public class RegisterPage1 extends AbstractPage {
 		element(submitButton).waitUntilVisible();
 		submitButton.click();
 	}
-
 }
