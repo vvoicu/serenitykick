@@ -2,6 +2,8 @@ package com.gourmondo.steps;
 
 import com.gourmondo.pages.LoginAndRegistrationPage2;
 import net.thucydides.core.annotations.Step;
+import tools.CustomerAccountModel;
+import tools.EmailModel;
 
 /**
  * Created by sebastianciocan on 5/11/2017.
@@ -58,6 +60,10 @@ public class LoginAndRegistrationSteps2 extends AbstractSteps {
     @Step
     public void assertTheAccountWasCreated(String message){
         loginAndRegistrationPage2.assertTheAccountWasCreated(message);
+    }
+    @Step
+    public void validateEmailData(EmailModel emailModel, CustomerAccountModel customerAccountModel){
+        loginAndRegistrationPage2.validateEmailData(emailModel,customerAccountModel);
     }
 
 }

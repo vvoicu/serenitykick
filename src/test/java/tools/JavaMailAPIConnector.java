@@ -51,8 +51,8 @@ public class JavaMailAPIConnector {
 	
 	
 	// search for a specific email 
-	public String searchEmail(String emailAddressFrom, String subject) {
-		String emailText = "";
+	public EmailModel searchEmail(String emailAddressFrom, String subject) {
+		EmailModel emailModel = new EmailModel();
 		Message[] message = getEmails();
 		
 		for (int i = 0; i < message.length; i++) {
@@ -60,14 +60,16 @@ public class JavaMailAPIConnector {
 				Address address =  message[i].getFrom()[0];
 			    if (address.toString().contains(emailAddressFrom) && !(message[i].isSet(Flags.Flag.SEEN))
 							&& message[i].getSubject().contains(subject)) {
-					emailText = getTextFromMessage(message[i]);	
+					emailModel.setContent(getTextFromMessage(message[i]));
+					emailModel.setSubject(message[i].getSubject());
+					emailModel.setSender(message[i].getFrom()[0].toString());
 			    }			 
 			} catch (MessagingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		return emailText;
+		return emailModel;
 	}
 	
 	// retrieve text from message

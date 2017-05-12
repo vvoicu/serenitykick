@@ -5,6 +5,9 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import tools.CustomerAccountModel;
+import tools.EmailModel;
+import tools.Helpers;
 
 import java.util.List;
 
@@ -123,5 +126,18 @@ public class LoginAndRegistrationPage2 extends AbstractPage {
     public void assertTheAccountWasCreated(String message){
         element(registrationSuccessfulMessage).waitUntilVisible();
         Assert.assertTrue("The account was created message is not displayed!",registrationSuccessfulMessage.getText().contentEquals(message));
+    }
+    public void validateEmailData(EmailModel emailModel, CustomerAccountModel customerAccountModel){
+        
+        waitABit(15000);
+
+        Assert.assertTrue("The title does not match!",emailModel.getContent().contains(customerAccountModel.getTitle()));
+
+        Assert.assertTrue("First name does not match!",emailModel.getContent().contains(customerAccountModel.getFirstName()));
+
+        Assert.assertTrue("Last name does not match!",emailModel.getContent().contains(customerAccountModel.getLastName()));
+
+        Assert.assertTrue("The Date is incorrect!",emailModel.getContent().contains(Helpers.getDate(customerAccountModel)));
+
     }
 }

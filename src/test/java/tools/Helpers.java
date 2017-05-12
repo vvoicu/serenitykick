@@ -32,4 +32,11 @@ public class Helpers {
         Date date = new Date();
         return simpleDateFormat.format(date);
     }
+    public static String getDate(CustomerAccountModel customerAccountModel){
+        String date = "";
+
+        date = customerAccountModel.getDay() + "." + customerAccountModel.getMonth() + "." + customerAccountModel.getYear();
+
+        return date;
+    }
 }
