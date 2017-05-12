@@ -63,6 +63,7 @@ public class JavaMailAPIConnector {
 					emailModel.setContent(getTextFromMessage(message[i]));
 					emailModel.setSubject(message[i].getSubject());
 					emailModel.setSender(message[i].getFrom()[0].toString());
+					break;
 			    }			 
 			} catch (MessagingException e) {
 				// TODO Auto-generated catch block

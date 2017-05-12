@@ -77,7 +77,6 @@ public class LoginAndRegistrationPage2 extends AbstractPage {
     public void setEmailInput(String email){
         element(emailInput).waitUntilVisible();
         typeInto(emailInput,email);
-        System.out.println(email);
     }
     public void setDayDropDown(String day){
         dayDropDown.click();
@@ -128,8 +127,8 @@ public class LoginAndRegistrationPage2 extends AbstractPage {
         Assert.assertTrue("The account was created message is not displayed!",registrationSuccessfulMessage.getText().contentEquals(message));
     }
     public void validateEmailData(EmailModel emailModel, CustomerAccountModel customerAccountModel){
-        
-        waitABit(15000);
+
+        waitABit(5000);
 
         Assert.assertTrue("The title does not match!",emailModel.getContent().contains(customerAccountModel.getTitle()));
 
