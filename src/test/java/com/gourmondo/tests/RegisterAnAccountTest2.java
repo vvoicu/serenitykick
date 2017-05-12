@@ -16,15 +16,16 @@ public class RegisterAnAccountTest2 extends BaseTest {
 
     EmailModel emailModel = new EmailModel();
     CustomerAccountModel customerAccountModel = new CustomerAccountModel();
-    JavaMailAPIConnector javaMailAPIConnector = new JavaMailAPIConnector(EmailConstants.MAIL_STORE_PROTOCOL,EmailConstants.IMAPS,EmailConstants.IMAP_GMAIL,"mail@mail.com","password");
+    JavaMailAPIConnector javaMailAPIConnector = new JavaMailAPIConnector(EmailConstants.MAIL_STORE_PROTOCOL,EmailConstants.IMAPS,EmailConstants.IMAP_GMAIL,"javamaillearning@gmail.com","test_123123");
     @Before
     public void setup(){
         webdriver.manage().window().maximize();
         customerAccountModel.setDay("11");
-        customerAccountModel.setMonth("05");
+        customerAccountModel.setMonth("10");
         customerAccountModel.setYear("2000");
-        emailModel.setSender("info@gourmondo.de");
-        emailModel.setSubject("www.gourmondo.de - erfolgreiche Registrierung als Kunde");
+        customerAccountModel.setTitle("Frau");
+        customerAccountModel.setFirstName("FirstName");
+        customerAccountModel.setLastName("LastName");
     }
 
     @Steps
@@ -38,9 +39,9 @@ public class RegisterAnAccountTest2 extends BaseTest {
         webdriver.get(Constants.GOURMONDO_HOST);
         headerSteps2.clickLoginAndRegisterButton();
         loginAndRegistrationSteps2.clickSwitchToRegistrationFormButton();
-        loginAndRegistrationSteps2.setFirstNameInput("FirstName");
-        loginAndRegistrationSteps2.setLastNameInput("LastName");
-        loginAndRegistrationSteps2.setEmailInput("asgass" + Helpers.date() + "@adsgacc.com");
+        loginAndRegistrationSteps2.setFirstNameInput(customerAccountModel.getFirstName());
+        loginAndRegistrationSteps2.setLastNameInput(customerAccountModel.getLastName());
+        loginAndRegistrationSteps2.setEmailInput("javamaillearning+hff@gmail.com");
         loginAndRegistrationSteps2.setDayDropDown(customerAccountModel.getDay());
         loginAndRegistrationSteps2.setMonthDropDown(customerAccountModel.getMonth());
         loginAndRegistrationSteps2.setYearDropDown(customerAccountModel.getYear());
@@ -49,7 +50,7 @@ public class RegisterAnAccountTest2 extends BaseTest {
         loginAndRegistrationSteps2.clickCheckboxForPa();
         loginAndRegistrationSteps2.clickConfirmRegistrationButton();
         loginAndRegistrationSteps2.assertTheAccountWasCreated("Vielen Dank für Ihre Registrierung.");
-        emailModel = javaMailAPIConnector.searchEmail(emailModel.getSender(),emailModel.getSubject());
+        emailModel = javaMailAPIConnector.searchEmail("info@gourmondo.de","www.gourmondo.de - erfolgreiche Registrierung als Kunde");
         loginAndRegistrationSteps2.validateEmailData(emailModel,customerAccountModel);
     }
 
