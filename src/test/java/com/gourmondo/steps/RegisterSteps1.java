@@ -3,6 +3,8 @@ package com.gourmondo.steps;
 import com.gourmondo.pages.RegisterPage1;
 
 import net.thucydides.core.annotations.Step;
+import tools.CustomerAccountModel;
+import tools.EmailModel;
 
 public class RegisterSteps1 {
 
@@ -77,4 +79,10 @@ public class RegisterSteps1 {
 	public void clickTSubmit() {
 		registerPage1.clickTSubmit();
 	}
+	
+	@Step
+	public void validateDate(EmailModel emailModel, CustomerAccountModel customerAccountModel) {
+		registerPage1.validateDate(emailModel, customerAccountModel);
+	}
+
 }

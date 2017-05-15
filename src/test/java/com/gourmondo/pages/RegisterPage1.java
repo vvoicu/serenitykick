@@ -9,6 +9,9 @@ import com.drupal.pages.AbstractPage;
 
 import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
+import tools.CustomerAccountModel;
+import tools.EmailModel;
+import tools.Helpers;
 
 public class RegisterPage1 extends AbstractPage {
 
@@ -62,9 +65,7 @@ public class RegisterPage1 extends AbstractPage {
 
 	@FindBy(css = "#registerClientForm div.submit-button button")
 	WebElement submitButton;
-	//.values .submit-button .btn.btn-lg.btn-primary.text-uppercase
-	
-	
+	// .values .submit-button .btn.btn-lg.btn-primary.text-uppercase
 
 	public void clicktoLoginItem() {
 		element(loginItem).waitUntilVisible();
@@ -156,4 +157,18 @@ public class RegisterPage1 extends AbstractPage {
 		element(submitButton).waitUntilVisible();
 		submitButton.click();
 	}
+
+	public void validateDate(EmailModel emailModel, CustomerAccountModel customerAccountModel) {
+        
+        waitABit(15000); 
+        System.out.println(emailModel.getContent());
+		Assert.assertTrue("Title does not mach", emailModel.getContent().contains(customerAccountModel.getTitle()));
+		Assert.assertTrue("First name does not mach",
+				emailModel.getContent().contains(customerAccountModel.getFirstName()));
+		Assert.assertTrue("Last name does not mach",
+				emailModel.getContent().contains(customerAccountModel.getLastName()));
+		Assert.assertTrue("The Date is incorrect!",
+				emailModel.getContent().contains(Helpers.getDate(customerAccountModel)));
+	}
+
 }
