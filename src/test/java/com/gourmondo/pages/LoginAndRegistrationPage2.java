@@ -28,23 +28,14 @@ public class LoginAndRegistrationPage2 extends AbstractPage {
     @FindBy(css = "input[id='registerClientForm-email']")
     private WebElement emailInput;
 
-    @FindBy(css = "#registerClientForm-birthDay .SelectDate:nth-of-type(1) div[class='btn-group bootstrap-select  select-picker-wrapper']")
+    @FindBy(css = "#registerClientForm-birthDay .SelectDate:nth-of-type(1)")
     private WebElement dayDropDown;
 
-    @FindBy(css = "#registerClientForm-birthDay .SelectDate:nth-of-type(1) .dropdown-menu.inner.selectpicker")
-    private WebElement daysList;
-
-    @FindBy(css = "#registerClientForm-birthDay .SelectDate:nth-of-type(2) div[class='btn-group bootstrap-select  select-picker-wrapper']")
+    @FindBy(css = "#registerClientForm-birthDay .SelectDate:nth-of-type(2)")
     private WebElement monthDropDown;
 
-    @FindBy(css = "#registerClientForm-birthDay .SelectDate:nth-of-type(2) .dropdown-menu.inner.selectpicker")
-    private WebElement monthsList;
-
-    @FindBy(css = "#registerClientForm-birthDay .SelectDate:nth-of-type(3) div[class='btn-group bootstrap-select  birth-year select-picker-wrapper']")
+    @FindBy(css = "#registerClientForm-birthDay .SelectDate:nth-of-type(3)")
     private WebElement yearDropDown;
-
-    @FindBy(css = "#registerClientForm-birthDay .SelectDate:nth-of-type(3) .dropdown-menu.inner.selectpicker")
-    private WebElement yearsList;
 
     @FindBy(css = "input[id='registerClientForm-password']")
     private WebElement passwordInput;
@@ -80,7 +71,7 @@ public class LoginAndRegistrationPage2 extends AbstractPage {
     }
     public void setDayDropDown(String day){
         dayDropDown.click();
-        List<WebElement> daysLists = daysList.findElements(By.cssSelector("li"));
+        List<WebElement> daysLists = dayDropDown.findElements(By.cssSelector("ul li"));
         for(WebElement selectDay : daysLists){
             if(selectDay.findElement(By.cssSelector("a span")).getText().contentEquals(day)){
                 selectDay.click();
@@ -90,7 +81,7 @@ public class LoginAndRegistrationPage2 extends AbstractPage {
     }
     public void setMonthDropDown(String month){
         monthDropDown.click();
-        List<WebElement> monthsLists = monthsList.findElements(By.cssSelector("li"));
+        List<WebElement> monthsLists = monthDropDown.findElements(By.cssSelector("ul li"));
         for(WebElement months : monthsLists){
             if(months.findElement(By.cssSelector("a span")).getText().contentEquals(month)){
                 months.click();
@@ -99,7 +90,7 @@ public class LoginAndRegistrationPage2 extends AbstractPage {
     }
     public void setYearDropDown(String year){
         yearDropDown.click();
-        List<WebElement> yearsLists = yearsList.findElements(By.cssSelector("li"));
+        List<WebElement> yearsLists = yearDropDown.findElements(By.cssSelector("ul li"));
         for(WebElement years : yearsLists){
             if(years.findElement(By.cssSelector("a span")).getText().trim().contentEquals(year)){
                 years.click();

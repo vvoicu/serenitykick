@@ -41,7 +41,7 @@ public class RegisterAnAccountTest2 extends BaseTest {
         loginAndRegistrationSteps2.clickSwitchToRegistrationFormButton();
         loginAndRegistrationSteps2.setFirstNameInput(customerAccountModel.getFirstName());
         loginAndRegistrationSteps2.setLastNameInput(customerAccountModel.getLastName());
-        loginAndRegistrationSteps2.setEmailInput("javamaillearning+hff@gmail.com");
+        loginAndRegistrationSteps2.setEmailInput("javamaillearning+sgf@gmail.com");
         loginAndRegistrationSteps2.setDayDropDown(customerAccountModel.getDay());
         loginAndRegistrationSteps2.setMonthDropDown(customerAccountModel.getMonth());
         loginAndRegistrationSteps2.setYearDropDown(customerAccountModel.getYear());

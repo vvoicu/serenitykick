@@ -84,7 +84,7 @@ public class JavaMailAPIConnector {
 				MimeMultipart mimeMultipart = (MimeMultipart) message.getContent();
 				for (int i = 0; i < mimeMultipart.getCount(); i ++) {
 					BodyPart bodyPart = mimeMultipart.getBodyPart(i);
-					String html = (String) bodyPart.getContent().toString();
+					String html = bodyPart.getContent().toString();
 					textFromMessage = textFromMessage + "\n" + org.jsoup.Jsoup.parse(html).text();
 				}
 			}
